@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 11:18:02 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/19 11:39:38 by jhyokki          ###   ########.fr       */
+/*   Created: 2024/11/19 11:21:42 by jhyokki           #+#    #+#             */
+/*   Updated: 2024/11/19 11:46:49 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_printf(const char *format, ...)
-{
-	(void)format;
-	return (write(1, "Hello, World!\n", 14));
-}
+extern	int	ft_printf(const char *format, ...);
+
+#endif

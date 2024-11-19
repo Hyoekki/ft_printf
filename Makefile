@@ -4,8 +4,9 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
-SRC =
+SRC = src/ft_printf.c
 OBJS = $(SRC:.c=.o)
+LDFLAGS = `pkg-config --cflags --libs check`
 
 # Rules
 $(NAME): $(OBJS)
@@ -17,6 +18,11 @@ $(NAME): $(OBJS)
 
 # Rule to build the entire library
 all: $(NAME)
+
+# Rule to run the tests
+test: $(NAME)
+	$(CC) -o tests/test_suite tests/test_ft_printf.c $(NAME) $(LDFLAGS)
+	./tests/test_suite
 
 # Rule to clean the object files
 clean:
