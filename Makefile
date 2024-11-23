@@ -36,16 +36,19 @@ all: $(NAME)
 
 # Rule to run the tests, links against both libftprintf.a and libft.a
 test: $(NAME) $(LIBFT)
-	$(CC) -o tests/test_suite tests/test_ft_printf.c $(NAME) $(LIBFT) $(LDFLAGS)
+	$(CC) $(CFLAGS) -o tests/test_suite tests/test_ft_printf.c $(NAME) $(LIBFT) $(LDFLAGS)
 	./tests/test_suite
 
 # Rule to clean the object files
 clean:
 	rm -f $(OBJS)
+	rm -f tests/test_suite
+	make -C src/libft clean
 
 # Rule to clean the object files and the library
 fclean: clean
 	rm -f $(NAME)
+	make -C src/libft fclean
 
 # Rule to clean and rebuild the library
 re: fclean all
