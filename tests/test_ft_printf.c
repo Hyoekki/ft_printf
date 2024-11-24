@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:27:59 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/23 11:43:27 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/24 18:48:23 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,22 @@ START_TEST(test_ft_printf_zero_i)
 }
 END_TEST
 
+/* Test printing a simple string with %s */
+START_TEST(test_ft_printf_string_s)
+{
+	int ret = ft_printf("String: %s\n", "Hello, World!");
+	ck_assert_int_eq(ret, 22);
+}
+END_TEST
+
+/* Test printing a null string with %s */
+START_TEST(test_ft_printf_null_string_s)
+{
+	int ret = ft_printf("String: %s\n", NULL);
+	ck_assert_int_eq(ret, 15);
+}
+END_TEST
+
 Suite *ft_printf_suite(void)
 {
 	Suite	*s;
@@ -88,6 +104,10 @@ Suite *ft_printf_suite(void)
 	tcase_add_test(tc_core, test_ft_printf_positive_i);
 	tcase_add_test(tc_core, test_ft_printf_negative_i);
 	tcase_add_test(tc_core, test_ft_printf_zero_i);
+
+	/* Add tests for %s specifier */
+    tcase_add_test(tc_core, test_ft_printf_string_s);
+    tcase_add_test(tc_core, test_ft_printf_null_string_s);
 
 	suite_add_tcase(s, tc_core);
 

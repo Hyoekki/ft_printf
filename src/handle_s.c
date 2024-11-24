@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   handle_s.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 11:21:42 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/24 18:34:29 by jhyokki          ###   ########.fr       */
+/*   Created: 2024/11/24 18:29:31 by jhyokki           #+#    #+#             */
+/*   Updated: 2024/11/24 18:46:40 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
 #include <stdarg.h>
-#include "../src/libft/libft.h"
+#include "libft/libft.h"
 
-int	handle_s(va_list args);
-int	handle_d(va_list args);
-int	handle_percent(va_list args);
+int	handle_s(va_list args)
+{
+	char	*s;
 
-typedef int (*specifier_handler)(va_list args);
-typedef struct {
-	char	specifier;
-	specifier_handler handler;
-} specifier_map;
-
-extern specifier_map specifiers[];
-extern	int	ft_printf(const char *format, ...);
-
-#endif
+	s = va_arg(args, char *);
+	if (!s)
+		s = "(null)";
+	ft_putstr_fd(s, 1);
+	return (ft_strlen(s));
+}
