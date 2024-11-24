@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:18:02 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/24 18:42:01 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/24 19:11:55 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ specifier_map specifiers[] = {
 //	{'x', handle_x},
 //	{'X', handle_x},
 	{'%', handle_percent},
+	{0, NULL}
 };
 
 /* Find handler function from specifier_map */
