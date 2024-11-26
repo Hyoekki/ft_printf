@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:42:40 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/24 13:44:01 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/25 20:47:33 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	handle_d(va_list args)
 {
-	int num;
-	int count;
+	int	num;
+	int	count;
 
 	count = 0;
 	num = va_arg(args, int);
