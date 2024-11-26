@@ -8,7 +8,10 @@ LIBFT = src/libft/libft.a
 SRC = src/ft_printf.c \
 	src/handle_d.c \
 	src/handle_percent.c \
-	src/handle_s.c
+	src/handle_s.c \
+	src/handle_u.c \
+	src/handle_x.c \
+	src/handle_capital_x.c
 OBJS = $(SRC:.c=.o)
 LDFLAGS = `pkg-config --cflags --libs check`
 

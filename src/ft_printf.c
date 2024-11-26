@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:18:02 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/24 19:11:55 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/26 14:42:46 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,25 @@
 #include "libft/libft.h"
 #include "../include/ft_printf.h"
 
-specifier_map specifiers[] = {
+/* Find handler function from t_specifier_map */
+static int	find_handler(char s, va_list args)
+{
+	static t_specifier_map	specifiers[] = {
 // 	{'c', handle_c},
 	{'s', handle_s},
 //	{'p', handle_p}
 	{'d', handle_d},
 	{'i', handle_d},
-//	{'u', handle_u},
-//	{'x', handle_x},
-//	{'X', handle_x},
+	{'u', handle_u},
+	{'x', handle_x},
+	{'X', handle_capital_x},
 	{'%', handle_percent},
 	{0, NULL}
-};
+	};
+	t_specifier_map			*current;
 
-/* Find handler function from specifier_map */
-static int	find_handler(char s, va_list args)
-{
-	specifier_map *current = specifiers;
-	while(current -> specifier)
+	current = specifiers;
+	while (current -> specifier)
 	{
 		if (s == current -> specifier)
 			return (current -> handler(args));
@@ -40,6 +41,7 @@ static int	find_handler(char s, va_list args)
 	}
 	return (2);
 }
+
 /* Iterate over the string (format) and 
 Format the string by calling find_handler*/
 static int	process_format(const char *format, va_list args)
@@ -66,8 +68,8 @@ static int	process_format(const char *format, va_list args)
 
 int	ft_printf(const char *format, ...)
 {
-	va_list args;
-	int     count;
+	va_list	args;
+	int		count;
 
 	va_start(args, format);
 	count = process_format(format, args);

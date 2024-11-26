@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:27:59 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/24 18:48:23 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/26 14:22:16 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,78 @@ START_TEST(test_ft_printf_null_string_s)
 }
 END_TEST
 
+/* Test printing a positive number with %x */
+START_TEST(test_ft_printf_hex_lower_positive)
+{
+	int ret = ft_printf("Hex (lower): %x\n", 255);
+	ck_assert_int_eq(ret, 16); // "Hex (lower): ff\n" has 16 characters
+}
+END_TEST
+
+/* Test printing zero with %x */
+START_TEST(test_ft_printf_hex_lower_zero)
+{
+	int ret = ft_printf("Hex (lower): %x\n", 0);
+	ck_assert_int_eq(ret, 15); // "Hex (lower): 0\n" has 15 characters
+}
+END_TEST
+
+/* Test printing maximum unsigned int with %x */
+START_TEST(test_ft_printf_hex_lower_max)
+{
+	int ret = ft_printf("Hex (lower): %x\n", 4294967295U);
+	ck_assert_int_eq(ret, 22); // "Hex (lower): ffffffff\n" has 22 characters
+}
+END_TEST
+
+/* Test printing a positive number with %X */
+START_TEST(test_ft_printf_hex_upper_positive)
+{
+	int ret = ft_printf("Hex (upper): %X\n", 255);
+	ck_assert_int_eq(ret, 16); // "Hex (upper): FF\n" has 16 characters
+}
+END_TEST
+
+/* Test printing zero with %X */
+START_TEST(test_ft_printf_hex_upper_zero)
+{
+	int ret = ft_printf("Hex (upper): %X\n", 0);
+	ck_assert_int_eq(ret, 15); // "Hex (upper): 0\n" has 15 characters
+}
+END_TEST
+
+/* Test printing maximum unsigned int with %X */
+START_TEST(test_ft_printf_hex_upper_max)
+{
+	int ret = ft_printf("Hex (upper): %X\n", 4294967295U);
+	ck_assert_int_eq(ret, 22); // "Hex (upper): FFFFFFFF\n" has 22 characters
+}
+END_TEST
+
+/* Test printing a positive unsigned int with %u */
+START_TEST(test_ft_printf_unsigned_positive)
+{
+	int ret = ft_printf("Unsigned: %u\n", 300);
+	ck_assert_int_eq(ret, 14); // "Unsigned: 300\n" has 14 characters
+}
+END_TEST
+
+/* Test printing zero with %u */
+START_TEST(test_ft_printf_unsigned_zero)
+{
+	int ret = ft_printf("Unsigned: %u\n", 0);
+	ck_assert_int_eq(ret, 12); // "Unsigned: 0\n" has 12 characters
+}
+END_TEST
+
+/* Test printing maximum unsigned int with %u */
+START_TEST(test_ft_printf_unsigned_max)
+{
+	int ret = ft_printf("Unsigned: %u\n", 4294967295U);
+	ck_assert_int_eq(ret, 21); // "Unsigned: 4294967295\n" has 21 characters
+}
+END_TEST
+
 Suite *ft_printf_suite(void)
 {
 	Suite	*s;
@@ -106,8 +178,23 @@ Suite *ft_printf_suite(void)
 	tcase_add_test(tc_core, test_ft_printf_zero_i);
 
 	/* Add tests for %s specifier */
-    tcase_add_test(tc_core, test_ft_printf_string_s);
-    tcase_add_test(tc_core, test_ft_printf_null_string_s);
+	tcase_add_test(tc_core, test_ft_printf_string_s);
+	tcase_add_test(tc_core, test_ft_printf_null_string_s);
+
+	/* Add tests for %x specifier (lowercase) */
+	tcase_add_test(tc_core, test_ft_printf_hex_lower_positive);
+	tcase_add_test(tc_core, test_ft_printf_hex_lower_zero);
+	tcase_add_test(tc_core, test_ft_printf_hex_lower_max);
+
+	/* Add tests for %X specifier (uppercase) */
+	tcase_add_test(tc_core, test_ft_printf_hex_upper_positive);
+	tcase_add_test(tc_core, test_ft_printf_hex_upper_zero);
+	tcase_add_test(tc_core, test_ft_printf_hex_upper_max);
+
+	/* Add tests for %u specifier */
+	tcase_add_test(tc_core, test_ft_printf_unsigned_positive);
+	tcase_add_test(tc_core, test_ft_printf_unsigned_zero);
+	tcase_add_test(tc_core, test_ft_printf_unsigned_max);
 
 	suite_add_tcase(s, tc_core);
 
