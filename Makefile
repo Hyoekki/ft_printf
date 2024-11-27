@@ -4,14 +4,16 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
-LIBFT = src/libft/libft.a
+LIBFT = libft/libft.a
 SRC = src/ft_printf.c \
 	src/handle_d.c \
 	src/handle_percent.c \
 	src/handle_s.c \
 	src/handle_u.c \
 	src/handle_x.c \
-	src/handle_capital_x.c
+	src/handle_capital_x.c \
+	src/handle_p.c \
+	src/handle_c.c
 OBJS = $(SRC:.c=.o)
 LDFLAGS = `pkg-config --cflags --libs check`
 
@@ -27,7 +29,7 @@ endif
 
 # Ensure libft.a is built before building libftprintf.a
 $(LIBFT):
-	make -C src/libft
+	make -C libft
 
 # Rule to build the target library, depends on libft.a
 $(NAME): $(OBJS) $(LIBFT)
@@ -49,12 +51,12 @@ test: $(NAME) $(LIBFT)
 clean:
 	rm -f $(OBJS)
 	rm -f tests/test_suite
-	make -C src/libft clean
+	make -C libft clean
 
 # Rule to clean the object files and the library
 fclean: clean
 	rm -f $(NAME)
-	make -C src/libft fclean
+	make -C libft fclean
 
 # Rule to clean and rebuild the library
 re: fclean all

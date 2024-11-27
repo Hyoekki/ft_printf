@@ -6,22 +6,21 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:18:02 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/26 14:42:46 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/27 14:45:03 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdarg.h>
-#include "libft/libft.h"
 #include "../include/ft_printf.h"
 
 /* Find handler function from t_specifier_map */
 static int	find_handler(char s, va_list args)
 {
 	static t_specifier_map	specifiers[] = {
-// 	{'c', handle_c},
+	{'c', handle_c},
 	{'s', handle_s},
-//	{'p', handle_p}
+	{'p', handle_p},
 	{'d', handle_d},
 	{'i', handle_d},
 	{'u', handle_u},

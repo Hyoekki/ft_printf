@@ -6,12 +6,12 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:44:25 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/24 13:45:12 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/27 14:43:35 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "libft/libft.h"
+#include "../include/ft_printf.h"
 
 int	handle_percent(va_list args)
 {

@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:27:59 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/26 14:22:16 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/27 15:02:08 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,32 @@ START_TEST(test_ft_printf_unsigned_max)
 }
 END_TEST
 
+/* Test printing a pointer with %p */
+START_TEST(test_ft_printf_pointer)
+{
+	int x = 42;
+	int ret = ft_printf("Pointer: %p\n", &x);
+	// Adjust the expected length based on the actual output
+	ck_assert_int_eq(ret, 20); // Example: "Pointer: 0x7ffee3b8\n" has 14 characters
+}
+END_TEST
+
+/* Test printing a character with %c */
+START_TEST(test_ft_printf_char)
+{
+	int ret = ft_printf("Char: %c\n", 'A');
+	ck_assert_int_eq(ret, 8); // "Char: A\n" has 8 characters
+}
+END_TEST
+
+/* Test printing a percent sign with %% */
+START_TEST(test_ft_printf_percent)
+{
+	int ret = ft_printf("Percent: %%\n");
+	ck_assert_int_eq(ret, 11); // "Percent: %\n" has 11 characters
+}
+END_TEST
+
 Suite *ft_printf_suite(void)
 {
 	Suite	*s;
@@ -195,6 +221,16 @@ Suite *ft_printf_suite(void)
 	tcase_add_test(tc_core, test_ft_printf_unsigned_positive);
 	tcase_add_test(tc_core, test_ft_printf_unsigned_zero);
 	tcase_add_test(tc_core, test_ft_printf_unsigned_max);
+
+	/* Add tests for %p specifier*/
+	tcase_add_test(tc_core, test_ft_printf_pointer);
+
+	/* Add tests for %c specifier*/
+	tcase_add_test(tc_core, test_ft_printf_char);
+
+	/* Add tests for %% specifier*/
+	tcase_add_test(tc_core, test_ft_printf_percent);
+
 
 	suite_add_tcase(s, tc_core);
 

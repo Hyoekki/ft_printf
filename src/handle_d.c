@@ -6,12 +6,12 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:42:40 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/25 20:47:33 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/27 14:43:36 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "libft/libft.h" 
+#include "../include/ft_printf.h"
 
 int	handle_d(va_list args)
 {

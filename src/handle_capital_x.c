@@ -6,13 +6,12 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:06:53 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/26 14:31:45 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/27 14:48:18 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "libft/libft.h"
-#include "../include/printf.h"
+#include "../include/ft_printf.h"
 
 static int	convert_to_capital_hex(unsigned int num, char *buffer)
 {
