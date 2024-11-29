@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:37:50 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/27 14:43:46 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/29 13:58:42 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static int	convert_to_hex(unsigned int num, char *buffer)
 	return (count);
 }
 
-int	handle_x(va_list args)
+int	handle_x(va_list *args)
 {
 	unsigned int	num;
 	char			buffer[20];
 	int				count;
 	int				len;
 
-	num = va_arg(args, unsigned int);
+	num = va_arg(*args, unsigned int);
 	count = 0;
 	len = convert_to_hex(num, buffer);
 	while (len > 0)

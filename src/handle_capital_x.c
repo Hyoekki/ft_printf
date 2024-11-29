@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:06:53 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/27 14:48:18 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/29 13:57:52 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static int	convert_to_capital_hex(unsigned int num, char *buffer)
 	return (count);
 }
 
-int	handle_capital_x(va_list args)
+int	handle_capital_x(va_list *args)
 {
 	unsigned int	num;
 	char			buffer[20];
 	int				count;
 	int				len;
 
-	num = va_arg(args, unsigned int);
+	num = va_arg(*args, unsigned int);
 	count = 0;
 	len = convert_to_capital_hex(num, buffer);
 	while (len > 0)

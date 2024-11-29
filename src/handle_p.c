@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:02:29 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/27 15:01:52 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/29 13:58:08 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	convert_ptr_to_hex(unsigned int num, char *buffer)
 	return (count);
 }
 
-int	handle_p(va_list args)
+int	handle_p(va_list *args)
 {
 	void			*ptr;
 	unsigned long	addr;
@@ -38,7 +38,7 @@ int	handle_p(va_list args)
 	int				count;
 	int				len;
 
-	ptr = va_arg(args, void *);
+	ptr = va_arg(*args, void *);
 	count = 0;
 	if (ptr == NULL)
 	{

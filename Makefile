@@ -61,5 +61,11 @@ fclean: clean
 # Rule to clean and rebuild the library
 re: fclean all
 
+# Rule to build and debug the test suite with debugging symbols
+debug: CFLAGS = -Wall -Wextra -Werror -g -O0
+debug: clean $(NAME) $(LIBFT)
+	$(CC) $(CFLAGS) -o tests/test_suite tests/test_ft_printf.c $(NAME) $(LIBFT) $(LDFLAGS)
+	lldb ./tests/test_suite
+
 # Phony targets
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test debug

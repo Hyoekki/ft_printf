@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:18:02 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/27 14:45:03 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/29 14:02:21 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../include/ft_printf.h"
 
 /* Find handler function from t_specifier_map */
-static int	find_handler(char s, va_list args)
+static int	find_handler(char s, va_list *args)
 {
 	static t_specifier_map	specifiers[] = {
 	{'c', handle_c},
@@ -38,12 +38,14 @@ static int	find_handler(char s, va_list args)
 			return (current -> handler(args));
 		current++;
 	}
+	ft_putchar_fd('%', 1);
+	ft_putchar_fd(s, 1);
 	return (2);
 }
 
 /* Iterate over the string (format) and 
 Format the string by calling find_handler*/
-static int	process_format(const char *format, va_list args)
+static int	process_format(const char *format, va_list *args)
 {
 	int	count;
 
@@ -55,6 +57,12 @@ static int	process_format(const char *format, va_list args)
 			format++;
 			count += find_handler(*format, args);
 			format++;
+		}
+		else if (*format == '%' && *(format + 1) == '\0')
+		{
+			ft_putchar_fd('%', 1);
+			count++;
+			break;
 		}
 		else
 		{
@@ -70,8 +78,10 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	int		count;
 
+	if (!format)
+		return (-1);
 	va_start(args, format);
-	count = process_format(format, args);
+	count = process_format(format, &args);
 	va_end(args);
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:27:59 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/27 15:02:08 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/29 14:02:50 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,64 @@ START_TEST(test_ft_printf_percent)
 }
 END_TEST
 
+/* Test printing multiple different format specifiers */
+START_TEST(test_ft_printf_multiple_formats)
+{
+	int ret = ft_printf("Multiple formats: %%, %i, %s\n", 42, "Hello, World!");
+	ck_assert_int_eq(ret, 39);
+}
+END_TEST
+
+/* Test printing an empty format string */
+START_TEST(test_ft_printf_empty_format)
+{
+	int ret = ft_printf("");
+	// Expected output: ""
+	// Length: 0 characters
+	ck_assert_int_eq(ret, 0);
+}
+END_TEST
+
+/* Test printing a NULL format string */
+START_TEST(test_ft_printf_null_format)
+{
+	int ret = ft_printf(NULL);
+	// Expected behavior: Handle gracefully, possibly return -1
+	ck_assert_int_eq(ret, -1);
+}
+END_TEST
+
+/* Test printing a NULL string with %s */
+START_TEST(test_ft_printf_null_string)
+{
+	int ret = ft_printf("String: %s\n", NULL);
+	// Expected output: "String: (null)\n"
+	// Length: 9 + 6 + 1 = 16 characters
+	ck_assert_int_eq(ret, 15);
+}
+END_TEST
+
+/* Test printing a very large unsigned int with %u */
+START_TEST(test_ft_printf_unsigned_very_large)
+{
+	unsigned int large_num = 4294967295U; // Maximum unsigned int
+	int ret = ft_printf("Very Large Unsigned: %u\n", large_num);
+	// Expected output: "Very Large Unsigned: 4294967295\n"
+	// Length: 22 characters
+	ck_assert_int_eq(ret, 32);
+}
+END_TEST
+
+/* Test printing an unsupported specifier */
+START_TEST(test_ft_printf_unsupported_specifier)
+{
+	int ret = ft_printf("Unsupported: %q\n", 100);
+	// Expected output: "Unsupported: \n" or handle as per implementation
+	// Assuming it returns 12 characters ("Unsupported: \n")
+	ck_assert_int_eq(ret, 16); // Adjust based on actual implementation
+}
+END_TEST
+
 Suite *ft_printf_suite(void)
 {
 	Suite	*s;
@@ -231,6 +289,13 @@ Suite *ft_printf_suite(void)
 	/* Add tests for %% specifier*/
 	tcase_add_test(tc_core, test_ft_printf_percent);
 
+	/* Tests for multiple formats and edge cases */
+	tcase_add_test(tc_core, test_ft_printf_multiple_formats);
+	tcase_add_test(tc_core, test_ft_printf_empty_format);
+	tcase_add_test(tc_core, test_ft_printf_null_format);
+	tcase_add_test(tc_core, test_ft_printf_null_string);
+	tcase_add_test(tc_core, test_ft_printf_unsigned_very_large);
+	tcase_add_test(tc_core, test_ft_printf_unsupported_specifier);
 
 	suite_add_tcase(s, tc_core);
 
