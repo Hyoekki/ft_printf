@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:18:02 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/29 14:02:21 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/30 13:57:59 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	process_format(const char *format, va_list *args)
 		{
 			ft_putchar_fd('%', 1);
 			count++;
-			break;
+			break ;
 		}
 		else
 		{
