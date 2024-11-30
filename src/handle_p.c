@@ -6,11 +6,12 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:02:29 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/29 13:58:08 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/30 14:09:54 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
+#include <unistd.h>
 #include "../include/ft_printf.h"
 
 static int	convert_ptr_to_hex(unsigned int num, char *buffer)
@@ -51,7 +52,7 @@ int	handle_p(va_list *args)
 	count += 2;
 	while (len > 0)
 	{
-		ft_putchar_fd(buffer[--len], 1);
+		write(1, &buffer[--len], 1);
 		count++;
 	}
 	return (count);

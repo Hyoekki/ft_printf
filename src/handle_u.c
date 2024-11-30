@@ -6,11 +6,12 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:37:45 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/29 13:58:47 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/30 14:09:11 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
+#include <unistd.h>
 #include "../include/ft_printf.h"
 
 int	handle_u(va_list *args)
@@ -25,7 +26,7 @@ int	handle_u(va_list *args)
 	i = 0;
 	if (num == 0)
 	{
-		ft_putchar_fd('0', 1);
+		write(1, "0", 1);
 		return (1);
 	}
 	while (num > 0)
@@ -35,7 +36,7 @@ int	handle_u(va_list *args)
 	}
 	while (i > 0)
 	{
-		ft_putchar_fd(buffer[--i], 1);
+		write(1, &buffer[--i], 1);
 		count++;
 	}
 	return (count);

@@ -2,7 +2,7 @@
 
 # Variables
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O2
 NAME = libftprintf.a
 LIBFT = libft/libft.a
 SRC = src/ft_printf.c \

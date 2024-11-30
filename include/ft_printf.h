@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:21:42 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/30 13:58:01 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/30 14:04:46 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <unistd.h>
 # include "../libft/include/libft.h"
 
 int	handle_s(va_list *args);

@@ -6,11 +6,12 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:06:53 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/29 13:57:52 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/11/30 14:09:43 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
+#include <unistd.h>
 #include "../include/ft_printf.h"
 
 static int	convert_to_capital_hex(unsigned int num, char *buffer)
@@ -42,7 +43,7 @@ int	handle_capital_x(va_list *args)
 	len = convert_to_capital_hex(num, buffer);
 	while (len > 0)
 	{
-		ft_putchar_fd(buffer[--len], 1);
+		write(1, &buffer[--len], 1);
 		count++;
 	}
 	return (count);
