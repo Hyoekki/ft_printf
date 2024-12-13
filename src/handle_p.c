@@ -43,7 +43,7 @@ int	handle_p(va_list *args)
 	count = 0;
 	if (ptr == NULL)
 	{
-		ft_putstr_fd("0x0", 1);
+		ft_putstr_fd("(nil)", 1);
 		return (3);
 	}
 	addr = (unsigned long)ptr;
