@@ -1,3 +1,6 @@
 [submodule "libft"]
 	path = libft
 	url = https://github.com/Hyoekki/libft
+[submodule "ft_printf_tester"]
+	path = ft_printf_tester
+	url = git@github.com:Hyoekki/ft_printf_tester.git
