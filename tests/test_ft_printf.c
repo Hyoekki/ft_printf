@@ -6,7 +6,7 @@
 /*   By: jhyokki <jhyokki@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:27:59 by jhyokki           #+#    #+#             */
-/*   Updated: 2024/11/29 14:02:50 by jhyokki          ###   ########.fr       */
+/*   Updated: 2024/12/15 08:56:14 by jhyokki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,13 +157,21 @@ START_TEST(test_ft_printf_unsigned_max)
 }
 END_TEST
 
-/* Test printing a pointer with %p */
 START_TEST(test_ft_printf_pointer)
 {
 	int x = 42;
 	int ret = ft_printf("Pointer: %p\n", &x);
 	// Adjust the expected length based on the actual output
-	ck_assert_int_eq(ret, 20); // Example: "Pointer: 0x7ffee3b8\n" has 14 characters
+	ck_assert_int_eq(ret, 20); // Example: "Pointer: 0x7ffee3b8\n" has 20 characters
+}
+END_TEST
+
+/* Test printing a NULL pointer with %p */
+START_TEST(test_ft_printf_null_pointer)
+{
+	int *ptr = NULL;
+	int ret = ft_printf("Pointer: %p\n", ptr);
+	ck_assert_int_eq(ret, 14); // "Pointer: (nil)\n" has 14 characters
 }
 END_TEST
 
@@ -282,6 +290,7 @@ Suite *ft_printf_suite(void)
 
 	/* Add tests for %p specifier*/
 	tcase_add_test(tc_core, test_ft_printf_pointer);
+	tcase_add_test(tc_core, test_ft_printf_null_pointer);
 
 	/* Add tests for %c specifier*/
 	tcase_add_test(tc_core, test_ft_printf_char);

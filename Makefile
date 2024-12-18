@@ -16,6 +16,7 @@ SRC = src/ft_printf.c \
 	src/handle_c.c
 OBJS = $(SRC:.c=.o)
 LDFLAGS = `pkg-config --cflags --libs check`
+.DEFAULT_GOAL := all
 
 # Detect OS and adjust compiler
 UNAME := $(shell uname)
@@ -40,7 +41,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # All rule to build the entire library
-all: $(NAME)
+all: $(LIBFT) $(NAME)
 
 # Rule to run the tests, links against both libftprintf.a and libft.a
 test: $(NAME) $(LIBFT)
@@ -60,12 +61,6 @@ fclean: clean
 
 # Rule to clean and rebuild the library
 re: fclean all
-
-# Rule to build and debug the test suite with debugging symbols
-debug: CFLAGS = -Wall -Wextra -Werror -g -O0
-debug: clean $(NAME) $(LIBFT)
-	$(CC) $(CFLAGS) -o tests/test_suite tests/test_ft_printf.c $(NAME) $(LIBFT) $(LDFLAGS)
-	lldb ./tests/test_suite
 
 # Phony targets
 .PHONY: all clean fclean re test debug
