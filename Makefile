@@ -1,66 +1,46 @@
-# Makefile for the 'src' directory of the 'ft_printf' library.
-
-# Variables
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O2
+CFLAGS = -Wall -Werror -Wextra
 NAME = libftprintf.a
-LIBFT = libft/libft.a
-SRC = src/ft_printf.c \
-	src/handle_d.c \
-	src/handle_percent.c \
-	src/handle_s.c \
-	src/handle_u.c \
-	src/handle_x.c \
-	src/handle_capital_x.c \
-	src/handle_p.c \
-	src/handle_c.c
-OBJS = $(SRC:.c=.o)
-LDFLAGS = `pkg-config --cflags --libs check`
-.DEFAULT_GOAL := all
 
-# Detect OS and adjust compiler
-UNAME := $(shell uname)
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+SRC_DIR = src
+INC_DIR = include
 
-# macOS
-ifeq ($(UNAME), Darwin)
-	CC = clang
-endif
+SRC = $(SRC_DIR)/ft_printf.c \
+	$(SRC_DIR)/handle_c.c \
+	$(SRC_DIR)/handle_capital_x.c \
+	$(SRC_DIR)/handle_d.c \
+	$(SRC_DIR)/handle_p.c \
+	$(SRC_DIR)/handle_percent.c \
+	$(SRC_DIR)/handle_s.c \
+	$(SRC_DIR)/handle_u.c \
+	$(SRC_DIR)/handle_x.c \
 
-# Rules
+OBJ = $(SRC:.c=.o)
 
-# Ensure libft.a is built before building libftprintf.a
+INC = -I$(INC_DIR) -I$(LIBFT_DIR)/include
+
+all: $(NAME)
+
 $(LIBFT):
-	make -C libft
+	$(MAKE) -C $(LIBFT_DIR)
 
-# Rule to build the target library, depends on libft.a
-$(NAME): $(OBJS) $(LIBFT)
-	ar rcs $(NAME) $(OBJS)
-
-# Rule to build the object files
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-# All rule to build the entire library
-all: $(LIBFT) $(NAME)
+$(NAME): $(LIBFT) $(OBJ)
+	cp $(LIBFT) $(NAME)
+	ar rcs $(NAME) $(OBJ)
 
-# Rule to run the tests, links against both libftprintf.a and libft.a
-test: $(NAME) $(LIBFT)
-	$(CC) $(CFLAGS) -o tests/test_suite tests/test_ft_printf.c $(NAME) $(LIBFT) $(LDFLAGS)
-	./tests/test_suite
-
-# Rule to clean the object files
 clean:
-	rm -f $(OBJS)
-	rm -f tests/test_suite
-	make -C libft clean
+	$(MAKE) -C $(LIBFT_DIR) clean
+	rm -rf $(OBJ)
 
-# Rule to clean the object files and the library
 fclean: clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
-	make -C libft fclean
 
-# Rule to clean and rebuild the library
 re: fclean all
 
-# Phony targets
-.PHONY: all clean fclean re test debug
+.PHONY: all clean fclean re
